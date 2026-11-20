@@ -73,17 +73,17 @@ El formulario está preparado para **Web3Forms** (o Formspree):
 
 ### 2. Variables de entorno de build
 
-El workflow (`.github/workflows/deploy.yml`) define:
+El workflow (`.github/workflows/deploy.yml`) está configurado para el **sitio de usuario**:
 
-- `SITE_URL=https://<usuario>.github.io`
-- `BASE_PATH=/<repositorio>/`
+- Repo: `tcampof.github.io`
+- URL: `https://tcampof.github.io/`
+- `SITE_URL=https://tcampof.github.io`
+- `BASE_PATH=/`
 
-Esto cubre sitios de proyecto (`https://user.github.io/repo`).
-
-Si despliegas en un sitio de usuario (`https://user.github.io` con repo `user.github.io`), cambia en el workflow:
+Si algún día lo mueves a un repo de proyecto (`https://user.github.io/repo`), cambia:
 
 ```yaml
-BASE_PATH: /
+BASE_PATH: /nombre/
 ```
 
 En local puedes probar con:
