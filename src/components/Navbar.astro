@@ -1,0 +1,61 @@
+---
+import ThemeToggle from './ThemeToggle';
+import { cv } from '../data/cv';
+import { withBase } from '../utils/withBase';
+
+const normalizedPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+const normalizedBase = withBase('/').replace(/\/$/, '') || '/';
+const isHome = normalizedPath === normalizedBase;
+
+const links = [
+  { href: isHome ? '#proyectos' : withBase('/#proyectos'), label: 'Proyectos' },
+  { href: isHome ? '#experiencia' : withBase('/#experiencia'), label: 'Experiencia' },
+  { href: isHome ? '#stack' : withBase('/#stack'), label: 'Stack' },
+  { href: isHome ? '#contacto' : withBase('/#contacto'), label: 'Contacto' },
+];
+
+const pdfHref = withBase(cv.profile.cvPdfPath);
+const homeHref = withBase('/');
+---
+
+<header
+  class="pointer-events-none fixed inset-x-0 top-0 z-50"
+  transition:persist="navbar"
+>
+  <div class="section-shell pointer-events-auto pt-4">
+    <nav
+      class="flex items-center justify-between gap-3 rounded-full border border-[var(--border)] px-3 py-2 shadow-[var(--shadow)] backdrop-blur-xl sm:px-4"
+      style="background: var(--navbar);"
+      aria-label="Principal"
+    >
+      <a
+        href={homeHref}
+        class="shrink-0 rounded-full px-2 py-1 text-sm font-semibold tracking-tight text-[var(--text)] transition hover:text-[var(--accent)]"
+      >
+        {cv.profile.name.split(' ')[0]}
+        <span class="text-[var(--text-muted)]">.dev</span>
+      </a>
+
+      <div class="hidden items-center gap-1 md:flex">
+        {
+          links.map((link) => (
+            <a
+              href={link.href}
+              class="rounded-full px-3 py-1.5 text-sm text-[var(--text-muted)] transition hover:bg-[color-mix(in_srgb,var(--primary)_10%,transparent)] hover:text-[var(--text)]"
+            >
+              {link.label}
+            </a>
+          ))
+        }
+      </div>
+
+      <div class="flex items-center gap-2">
+        <ThemeToggle client:load />
+        <a href={pdfHref} class="btn btn-primary !px-3 !py-2 text-sm sm:!px-4" download>
+          <span class="hidden sm:inline">Descargar CV</span>
+          <span class="sm:hidden">CV</span>
+        </a>
+      </div>
+    </nav>
+  </div>
+</header>

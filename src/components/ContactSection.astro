@@ -1,0 +1,47 @@
+---
+import ContactForm from './ContactForm';
+import CopyEmailButton from './CopyEmailButton';
+import SocialLinks from './SocialLinks';
+import { cv } from '../data/cv';
+
+const { profile } = cv;
+---
+
+<section id="contacto" class="scroll-mt-28 py-20 md:pb-28 md:pt-20">
+  <div class="section-shell">
+    <div class="surface-card reveal overflow-hidden p-6 md:p-10">
+      <div class="grid gap-10 lg:grid-cols-[1fr_1.1fr]">
+        <div>
+          <p class="eyebrow mb-3">Contacto directo</p>
+          <h2 class="text-3xl font-semibold tracking-tight md:text-4xl">
+            ¿Construimos algo juntos?
+          </h2>
+          <p class="mt-3 max-w-md text-[var(--text-muted)]">
+            Abierto a roles full-time, colaboraciones de producto y proyectos con impacto.
+            Respuesta habitual en menos de 48h.
+          </p>
+
+          <div class="mt-6 flex flex-wrap gap-3">
+            <CopyEmailButton client:load email={profile.email} />
+            <SocialLinks
+              client:load
+              socials={profile.socials.filter(
+                (s) => s.icon === 'github' || s.icon === 'linkedin',
+              )}
+            />
+          </div>
+
+          <p class="mt-6 font-mono text-sm text-[var(--text-muted)]">{profile.email}</p>
+        </div>
+
+        <div>
+          <ContactForm
+            client:visible
+            endpoint={profile.contactFormEndpoint}
+            email={profile.email}
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

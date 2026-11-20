@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ProjectsGrid from '../components/ProjectsGrid.astro';
+import ExperienceSection from '../components/ExperienceSection.astro';
+import StackSection from '../components/StackSection.astro';
+import ContactSection from '../components/ContactSection.astro';
+import { cv } from '../data/cv';
+---
+
+<BaseLayout
+  title={`${cv.profile.name} · ${cv.profile.title}`}
+  description={cv.profile.headline}
+>
+  <Hero />
+  <ProjectsGrid />
+  <ExperienceSection />
+  <StackSection />
+  <ContactSection />
+</BaseLayout>

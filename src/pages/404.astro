@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../utils/withBase';
+
+const homeHref = withBase('/');
+---
+
+<BaseLayout title="Página no encontrada" description="La página que buscas no existe.">
+  <section class="flex min-h-[70vh] items-center py-32">
+    <div class="section-shell max-w-xl">
+      <p class="font-mono text-sm text-[var(--accent)]">Error 404</p>
+      <h1 class="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">
+        Esta ruta no existe
+      </h1>
+      <p class="mt-4 text-[var(--text-muted)]">
+        El enlace puede estar roto o la página se ha movido. Vuelve al inicio para seguir
+        explorando el portafolio.
+      </p>
+      <a href={homeHref} class="btn btn-primary mt-8">Volver al inicio</a>
+    </div>
+  </section>
+</BaseLayout>
